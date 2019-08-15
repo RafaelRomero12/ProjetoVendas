@@ -22,7 +22,7 @@ namespace Vendas.Services
 
         public void Insert(Vendedor obj)
         {
-            obj.department = _context.Department.First();
+           
             _context.Add(obj);
             _context.SaveChanges();
         }
