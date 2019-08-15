@@ -13,6 +13,7 @@ namespace Vendas.Models
         public DateTime dtNasc { get; set; }
         public double salario { get; set; }
         public Department department { get; set; }
+        public int DepartmentId { get; set; }
         public ICollection<Venda> venda { get; set; } = new List<Venda>();
 
 
