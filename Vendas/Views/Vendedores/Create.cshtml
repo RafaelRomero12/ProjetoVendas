@@ -1,0 +1,38 @@
+﻿@model Vendas.Models.Vendedor
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Vendedor</h4>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="nome" class="control-label"></label>
+                <input asp-for="nome" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="email" class="control-label"></label>
+                <input asp-for="email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="dtNasc" class="control-label"></label>
+                <input asp-for="dtNasc" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="salario" class="control-label"></label>
+                <input asp-for="salario" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
