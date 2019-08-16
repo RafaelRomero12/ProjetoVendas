@@ -10,16 +10,23 @@ namespace Vendas.Models
     {
         public int id { get; set; }
 
+        [Required(ErrorMessage = "{0} Obrigatório")]
+        [StringLength(60, MinimumLength = 3, ErrorMessage = "O tamanho do {0} é no minimo {2} e o maximo {1} caracteres")]
         public string nome { get; set; }
 
+        [Required(ErrorMessage = "{0} Obrigatório")]
+        [EmailAddress(ErrorMessage = "Insira um E-Mail valido")]
         [DataType(DataType.EmailAddress)]
         public string email { get; set; }
 
+        [Required(ErrorMessage = "{0} Obrigatório")]
         [Display(Name = "Data de Nascimento")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime dtNasc { get; set; }
 
+        [Required(ErrorMessage = "{0} Obrigatório")]
+        [Range(100.0, 50000.0, ErrorMessage = "{0} precisa ser entre {1} e {2}")]
         [Display(Name = "Salário")]
         [DisplayFormat(DataFormatString = "{0:F2}")]
         public double salario { get; set; }
