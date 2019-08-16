@@ -17,40 +17,42 @@ namespace Vendas.Services
             _context = context;
         }
 
-        public List<Vendedor> FindAll()
+        public async Task<List<Vendedor>> FindAllAsync()
         {
-            return _context.Vendedor.ToList();
+            return await _context.Vendedor.ToListAsync();
         }
 
-        public void Insert(Vendedor obj)
+        public async Task InsertAsync(Vendedor obj)
         {
            
             _context.Add(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public Vendedor FindById(int id)
+        public async Task<Vendedor> FindByIdAsync(int id)
         {
-            return _context.Vendedor.Include(obj => obj.department).FirstOrDefault(obj => obj.id == id);
+            return await _context.Vendedor.Include(obj => obj.department).FirstOrDefaultAsync(obj => obj.id == id);
         }
 
-        public void Remove(int id)
+        public async Task RemoveAsync(int id)
         {
-            var obj = _context.Vendedor.Find(id);
+            var obj = await _context.Vendedor.FindAsync(id);
             _context.Vendedor.Remove(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Update (Vendedor obj)
+        public async Task UpdateAsync (Vendedor obj)
         {
-            if (!_context.Vendedor.Any(x => x.id == obj.id))
+            bool verifica = await _context.Vendedor.AnyAsync(x => x.id == obj.id);
+            if (!verifica)
             {
                 throw new NotFoundException("Id não encontrado");
             }
             try
             {
                 _context.Update(obj);
-                _context.SaveChanges();
+
+               await _context.SaveChangesAsync();
             }
             catch (DbConcurrencyException e)
             {
