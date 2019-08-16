@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using Vendas.Models;
 using Vendas.Data;
 using Vendas.Services;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace Vendas
 {
@@ -49,6 +51,14 @@ namespace Vendas
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingService seedingservice)
         {
+            var enUs = new CultureInfo("en-US");
+            var localizationOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(enUs),
+                SupportedCultures = new List<CultureInfo> { enUs },
+                SupportedUICultures = new List<CultureInfo> { enUs }
+            };
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
